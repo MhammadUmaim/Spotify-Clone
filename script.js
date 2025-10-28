@@ -6,23 +6,12 @@ let currentSong = new Audio();
 let songsList = [];
 let currentIndex = -1; // -1 means no song loaded yet
 
-
 async function getSongs() {
-    let x = await fetch("./songs/")
-    let response = await x.text()
-    // console.log(response)
-    let div = document.createElement("div")
-    div.innerHTML = response;
-    let as = div.getElementsByTagName("a")
-    let songs = [];
-    for (let i = 0; i < as.length; i++) {
-        const element = as[i];
-        if (element.href.endsWith(".mp3")) {
-            songs.push(element.href.split("/songs/")[1])
-        }
-    }
-    return songs
+    let response = await fetch("./songs/songs.json");
+    let data = await response.json();
+    return data.songs;
 }
+
 
 function formatTime(seconds) {
     if (isNaN(seconds) || seconds < 0) return "00:00"; // Handle invalid duration
