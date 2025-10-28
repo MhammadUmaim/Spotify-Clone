@@ -8,7 +8,7 @@ let currentIndex = -1; // -1 means no song loaded yet
 
 
 async function getSongs() {
-    let x = await fetch("http://127.0.0.1:5500/songs/")
+    let x = await fetch("./songs/")
     let response = await x.text()
     // console.log(response)
     let div = document.createElement("div")
